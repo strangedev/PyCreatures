@@ -3,17 +3,17 @@ Plant Module
 """
 import Thing
 
+
 class Plant(Thing.Thing):
 
-	"""
-	Plant class
-	"""
+    """
+    Plant class
+    """
 
-	seed_cycle = None
+    seed_cycle = 6
 
-	def __init__(self):
-		
-		"""
-		"""
+    def __init__(self):
+        """
+        """
 
-		super.__init__()
+        super.__init__()

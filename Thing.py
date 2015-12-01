@@ -2,24 +2,21 @@
 Thing Module
 """
 
+
 class Thing():
 
-	symbol = None
-	age = None
-	__pos__ = (None, None)
+    symbol = None
 
+    __pos = (None, None)
 
-	def __init__(self):
+    def __init__(self):
+        """
+        """
 
-		"""
-		"""
+        pass
 
-		pass
+    def perform_action(self):
+        """
+        """
 
-
-	def perform_action(self):
-
-		"""
-		"""
-
-		self.age += 1
+        self.age += 1
