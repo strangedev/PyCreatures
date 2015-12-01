@@ -16,10 +16,10 @@ class World(object):
         self.world_map = {}
         self.world_array = []
 
-        for x in range(self.map_height):
+        for y in range(self.map_height):
             row = []
 
-            for y in range(self.map_width):
+            for x in range(self.map_width):
                 row.append(None)
 
             self.world_array.append(row)
@@ -33,8 +33,8 @@ class World(object):
         """
         map_str = ""
 
-        for x in range(self.map_height):
-            for y in range(self.map_width):
+        for y in range(self.map_height):
+            for x in range(self.map_width):
 
                 thing = self.get_thing(x, y)
 
@@ -48,7 +48,7 @@ class World(object):
         return self.world_map[thing]
 
     def get_thing(self, x, y):
-        return self.world_array[x][y]
+        return self.world_array[y][x]
 
     def move(self, thing, pos):
         pass
@@ -63,13 +63,13 @@ class World(object):
         key = thing.__hash__()
 
         self.world_map[key] = coords
-        self.world_array[x][y] = thing
+        self.world_array[y][x] = thing
 
     def remove_thing(self, x, y):
 
         thing = self.get_thing(x, y)
 
-        self.world_array[x].pop(y)
+        self.world_array[y].pop(x)
         del self.world_map[thing]
 
     def get_neighbor_coords(self, x, y, direction):
