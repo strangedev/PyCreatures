@@ -1,4 +1,5 @@
 import Creature
+import Corn
 
 
 class Mouse(Creature.Creature):
@@ -8,3 +9,4 @@ class Mouse(Creature.Creature):
     def __init__(self):
         super().__init__()
         self._symbol = "M"
+        self.food_sources = [Corn.Corn]

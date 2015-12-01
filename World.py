@@ -60,8 +60,14 @@ class World(object):
     def get_thing(self, x, y):
         return self.world_array[y][x]
 
-    def move(self, thing, pos):
-        pass
+    def move(self, thing, x, y):
+
+        x_old, y_old = self.get_pos(thing)
+
+        self.remove_thing_at_coords(x_old, y_old)
+        self.remove_thing_at_coords(x, y)
+
+        self.add_thing(thing, x, y)
 
     def get_neighbor_from_coords(self, x, y, direction):
 
@@ -93,6 +99,9 @@ class World(object):
     def remove_thing_at_coords(self, x, y):
 
         thing = self.get_thing(x, y)
+
+        if thing is None:
+            return
 
         self.world_array[y][x] = None
         del self.world_map[thing]

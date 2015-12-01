@@ -24,9 +24,4 @@ class Plant(Thing.Thing):
 
         #  Reproduction
         if self.age % self.seed_cycle == 0:
-            x, y = world.get_random_neighboring_free(*self._pos)
-
-            if x == -1 and y == -1:
-                return
-
-            world.add_thing(self.__class__(), x, y)
+            self._reproduce(world)

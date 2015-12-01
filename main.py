@@ -2,6 +2,7 @@ import World
 import Thing
 import Mouse
 import Corn
+import time
 
 
 def milestone_1():
@@ -30,10 +31,17 @@ def milestone_2():
     for i in range(20):
         w.add_thing(Corn.Corn(), i, 0)
 
-    for i in range(100):
-    	w.compute_life_cycle()
+    for i in range(20):
+        w.add_thing(Corn.Corn(), 0, i)
 
-    print(w.print_map())
+    for i in range(5):
+        w.add_thing(Mouse.Mouse(), i, 3)
+
+    for k in range(1000):
+        time.sleep(0.01)
+
+        w.compute_life_cycle()
+        print(w.print_map())
 
 if __name__ == "__main__":
     #  milestone_1()
