@@ -38,6 +38,12 @@ class World(object):
 
                 thing = self.get_thing(x, y)
 
+                map_str += thing.symbol if thing else "."
+
+            map_str += "\n"
+
+        return map_str
+
     def get_pos(self, thing):
         return self.world_map[thing]
 

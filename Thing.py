@@ -3,9 +3,9 @@ Thing Module
 """
 
 
-class Thing():
+class Thing(object):
 
-    symbol = None
+    symbol = "T"
 
     __pos = (None, None)
 

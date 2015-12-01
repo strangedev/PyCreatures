@@ -16,4 +16,4 @@ class Plant(Thing.Thing):
         """
         """
 
-        super.__init__()
+        super().__init__()

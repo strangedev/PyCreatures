@@ -17,6 +17,6 @@ class Creature(Thing.Thing):
         """
         """
 
-        super.__init__()
+        super().__init__()
 
         self.starving = 0
