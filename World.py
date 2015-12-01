@@ -1,5 +1,11 @@
 """
 """
+from random import choice
+
+NORTH = 0
+EAST = 1
+SOUTH = 2
+WEST = 3
 
 
 class World(object):
@@ -8,13 +14,13 @@ class World(object):
     The world of things
     """
 
-    map_width = 79
-    map_height = 24
-
-    def __init__(self):
+    def __init__(self, width=79, height=24):
 
         self.world_map = {}
         self.world_array = []
+
+        self.map_width = width
+        self.map_height = height
 
         for y in range(self.map_height):
             row = []
@@ -25,7 +31,11 @@ class World(object):
             self.world_array.append(row)
 
     def compute_life_cycle(self):
-        pass
+        things = list(self.world_map.items())
+
+        for item in things:
+            thing, coord = item
+            thing.perform_action(self)
 
     def print_map(self):
         """
@@ -38,7 +48,7 @@ class World(object):
 
                 thing = self.get_thing(x, y)
 
-                map_str += thing.symbol
+                map_str += thing.symbol if thing else "."
 
             map_str += "\n"
 
@@ -53,24 +63,80 @@ class World(object):
     def move(self, thing, pos):
         pass
 
+    def get_neighbor_from_coords(self, x, y, direction):
+
+        x, y = self.get_neighboring_coords(x, y, direction)
+
+        return self.get_thing(x, y)
+
     def get_neighbor(self, thing, direction):
-        pass
+
+        x, y = self.world_map[thing]
+
+        return self.get_neighbor_from_coords(x, y)
 
     def add_thing(self, thing, x, y):
 
         # Keep reference of coords for thing
         coords = (x, y)
-        key = thing.__hash__()
+        thing.set_pos(coords)
 
-        self.world_map[key] = coords
+        self.world_map[thing] = coords
         self.world_array[y][x] = thing
 
-    def remove_thing(self, x, y):
+    def remove_thing(self, thing):
+
+        x, y = self.get_pos(thing)
+
+        self.remove_thing_at_coords(x, y)
+
+    def remove_thing_at_coords(self, x, y):
 
         thing = self.get_thing(x, y)
 
-        self.world_array[y].pop(x)
+        self.world_array[y][x] = None
         del self.world_map[thing]
 
-    def get_neighbor_coords(self, x, y, direction):
-        pass
+    def get_neighboring_coords(self, x, y, direction):
+        x_offset = 0
+        y_offset = 0
+
+        if direction is NORTH:
+            y_offset = -1
+        elif direction is EAST:
+            x_offset = 1
+        elif direction is SOUTH:
+            y_offset = 1
+        elif direction is WEST:
+            x_offset = -1
+
+        neighbor_x = (x + x_offset) % self.map_width
+        neighbor_y = (y + y_offset) % self.map_height
+
+        return (neighbor_x, neighbor_y)
+
+    def get_all_neighbors_from_coords(self, x, y):
+
+        neighboring_positions = [NORTH, EAST, SOUTH, WEST]
+
+        neighbors = []
+
+        for pos in neighboring_positions:
+
+            neighbor_pos = self.get_neighboring_coords(x, y, pos)
+
+            neighbor = (self.get_thing(*neighbor_pos), neighbor_pos)
+            neighbors.append(neighbor)
+
+        return neighbors
+
+    def get_random_neighboring_free(self, x, y):
+
+        neighbors = self.get_all_neighbors_from_coords(x, y)
+
+        neighbors = tuple(filter(lambda x: x[0] is None, neighbors))
+
+        if not neighbors:
+            return (-1, -1)
+
+        return choice(neighbors)[1]

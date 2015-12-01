@@ -7,4 +7,5 @@ class Corn(Plant.Plant):
 
     def __init__(self):
         super().__init__()
-        self.__symbol = "C"
+
+        self._symbol = "C"

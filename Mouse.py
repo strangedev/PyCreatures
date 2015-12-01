@@ -7,4 +7,4 @@ class Mouse(Creature.Creature):
 
     def __init__(self):
         super().__init__()
-        self.__symbol = "M"
+        self._symbol = "M"
