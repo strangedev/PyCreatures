@@ -1,10 +1,15 @@
 import World
+import Thing
 import Mouse
 import Corn
 
 
-w = World.World()
-w.add_thing(Mouse.Mouse(), 0, 0)
-w.add_thing(Corn.Corn(), 10, 0)
+if __name__ == "__main__":
 
-print(w.print_map())
+    w = World.World()
+    w.add_thing(Thing.Thing(), 15, 0)
+    w.add_thing(Thing.Thing(), 15, 9)
+
+    thing1 = w.get_thing(15, 0)
+
+    print(thing1.symbol)

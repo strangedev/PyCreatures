@@ -5,15 +5,16 @@ Thing Module
 
 class Thing(object):
 
-    symbol = "T"
-
-    __pos = (None, None)
-
     def __init__(self):
         """
         """
 
-        pass
+        self.__symbol = None
+        self.__pos = (None, None)
+
+    @property
+    def symbol(self):
+        return self.__symbol if self.__symbol else "."
 
     def perform_action(self):
         """

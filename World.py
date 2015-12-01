@@ -38,7 +38,7 @@ class World(object):
 
                 thing = self.get_thing(x, y)
 
-                map_str += thing.symbol if thing else "."
+                map_str += thing.symbol
 
             map_str += "\n"
 
