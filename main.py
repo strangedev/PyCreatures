@@ -1,7 +1,9 @@
 import World
 import Thing
-import Mouse
-import Corn
+from Entities.Creatures import Mouse
+from Entities.Creatures import Cat
+from Entities.Creatures import JohnCena
+from Entities.Plants import Corn
 import time
 
 
@@ -21,12 +23,12 @@ def milestone_1():
     things_neighbor = w.get_neighbor_from_coords(15, 0, World.NORTH)
     print(things_neighbor)
 
-    print(w.print_map())
+    print(w.draw_map())
 
 
 def milestone_2():
 
-    w = World.World(79, 29)
+    w = World.World(140, 40)
 
     for i in range(20):
         w.add_thing(Corn.Corn(), i, 0)
@@ -37,11 +39,12 @@ def milestone_2():
     for i in range(5):
         w.add_thing(Mouse.Mouse(), i, 3)
 
-    for k in range(1000):
-        time.sleep(0.01)
+    while True:
+        time.sleep(0.0000001)
 
         w.compute_life_cycle()
-        print(w.print_map())
+        print(w.draw_map())
+        print()
 
 if __name__ == "__main__":
     #  milestone_1()

@@ -18,14 +18,14 @@ class Thing(object):
     def symbol(self):
         return self._symbol if self._symbol else "."
 
+    def set_pos(self, pos):
+        self._pos = pos
+
     def perform_action(self):
         """
         """
 
         self.age += 1
-
-    def set_pos(self, pos):
-        self._pos = pos
 
     def find_food_locations(self, world):
         neighbors = world.get_all_neighbors_from_coords(*self._pos)
