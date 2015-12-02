@@ -4,13 +4,14 @@ from Entities.Creatures import Mouse
 from Entities.Creatures import Cat
 from Entities.Creatures import JohnCena
 from Entities.Plants import Corn
-import time
+from time import sleep
 from random import choice
 
 ENTITY_TYPES = {"Mouse": Mouse.Mouse,
                 "Cat": Cat.Cat,
-                "JohnCena": JohnCena,
-                "Corn": Corn.Corn}
+                "JohnCena": JohnCena.JohnCena,
+                "Corn": Corn.Corn,
+                "Thing": Thing.Thing}
 
 
 class Controller(object):
@@ -26,6 +27,15 @@ class Controller(object):
     def next_cycle(self):
 
         self.world.compute_life_cycle()
+
+    def animate_cycles(self, cycle_amount, dt=0.1):
+
+        for tick in range(cycle_amount):
+
+            self.next_cycle()
+            self.print_map()
+
+            sleep(dt)
 
     def print_map(self):
 
@@ -52,3 +62,5 @@ class Controller(object):
         for i in range(amount):
 
             self.spawn_at_random_pos(entity_type)
+
+    
