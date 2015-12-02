@@ -154,3 +154,17 @@ class World(object):
         neighbor_y = (y + y_offset) % self.map_height
 
         return (neighbor_x, neighbor_y)
+
+    def get_free_coords(self):
+
+        free_coords = []
+
+        for y in range(self.map_height):
+
+            for x in range(self.map_width):
+
+                if self.world_array[y][x] is None:
+
+                    free_coords.append((x, y))
+
+        return free_coords

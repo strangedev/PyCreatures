@@ -1,14 +1,13 @@
 import World
 import Thing
-from Entities.Creatures import Mouse
-from Entities.Creatures import Cat
-from Entities.Creatures import JohnCena
-from Entities.Plants import Corn
+import Controller
 import time
 
 
 def milestone_1():
+
     w = World.World(20, 10)
+
     w.add_thing(Thing.Thing(), 15, 0)
     w.add_thing(Thing.Thing(), 15, 9)
 
@@ -28,23 +27,18 @@ def milestone_1():
 
 def milestone_2():
 
-    w = World.World(140, 40)
+    ctlr = Controller.Controller()
 
-    for i in range(20):
-        w.add_thing(Corn.Corn(), i, 0)
+    ctlr.new_world(79, 29)
+    ctlr.spawn_multiple_at_random_pos("Corn", 20)
 
-    for i in range(20):
-        w.add_thing(Corn.Corn(), 0, i)
+    for i in range(120):
 
-    for i in range(5):
-        w.add_thing(Mouse.Mouse(), i, 3)
+        ctlr.next_cycle()
+        ctlr.print_map()
 
-    while True:
-        time.sleep(0.0000001)
+        time.sleep(0.01)
 
-        w.compute_life_cycle()
-        print(w.draw_map())
-        print()
 
 if __name__ == "__main__":
     #  milestone_1()
