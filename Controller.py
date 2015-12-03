@@ -5,7 +5,7 @@ from Entities.Creatures import Cat
 from Entities.Creatures import JohnCena
 from Entities.Plants import Corn
 from time import sleep
-from random import choice
+from random import choice, randint
 
 ENTITY_TYPES = {"Mouse": Mouse.Mouse,
                 "Cat": Cat.Cat,
@@ -62,3 +62,12 @@ class Controller(object):
         for i in range(amount):
 
             self.spawn_at_random_pos(entity_type)
+
+    def remove_at_random_pos(self, amount):
+
+        for i in range(amount):
+
+            x = randint(0, self.world.map_width - 1)
+            y = randint(0, self.world.map_height - 1)
+
+            self.world.remove_thing_at_coords(x, y)

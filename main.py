@@ -1,8 +1,6 @@
 import World
 import Thing
-import Controller
 import PyCreatures
-import time
 
 
 def milestone_1():
@@ -30,18 +28,15 @@ def milestone_1():
 
 def milestone_2():
 
-    ctlr = Controller.Controller()
+    py_creatures = PyCreatures.PyCreatures()
 
-    ctlr.new_world(79, 29)
+    commands = ["clear 79 29",
+                "spawn 20 Corn",
+                "anim 50 70",
+                "spawn 10 Mouse",
+                "anim 120 70"]
 
-    ctlr.spawn_multiple_at_random_pos("Corn", 20)
-
-    for i in range(120):
-
-        ctlr.next_cycle()
-        print(ctlr.draw_map())
-
-        time.sleep(0.07)
+    py_creatures.playlist(commands)
 
 
 def milestone_3():
@@ -54,5 +49,5 @@ def milestone_3():
 
 if __name__ == "__main__":
     # milestone_1()
-    # milestone_2()
+    milestone_2()
     milestone_3()

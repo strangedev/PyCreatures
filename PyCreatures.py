@@ -88,6 +88,16 @@ class PyCreatures(object):
 
         print(help_str)
 
+    def _perform_smite(self, args):
+
+        if len(args) == 2 and args[1].isdigit():
+            self.ctlr.remove_at_random_pos(int(args[1]))
+
+    def playlist(self, commands):
+        for cmd in commands:
+            print("> {0}".format(cmd))
+            self.perform_command(cmd)
+
     def perform_command(self, command_str):
 
         args = command_str.split()
@@ -112,6 +122,9 @@ class PyCreatures(object):
 
         elif args[0].isdigit():
             self._perform_animate_cycles(args)
+
+        elif args[0] == "smite":
+            self._perform_smite(args)
 
         else:
             print(self.ctlr.draw_map())

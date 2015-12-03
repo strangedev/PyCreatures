@@ -1,8 +1,9 @@
-from Entities.Creatures import Creature
+# from Entities.Creatures import Creature
+from Entities.Creatures import RandomMover
 from Entities.Plants import Corn
 
 
-class Mouse(Creature.Creature):
+class Mouse(RandomMover.RandomMover):
 
     """docstring for Mouse"""
 

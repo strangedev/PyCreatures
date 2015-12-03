@@ -8,4 +8,4 @@ class Corn(Plant.Plant):
     def __init__(self):
         super().__init__()
 
-        self._symbol = "C"
+        self._symbol = "§"
