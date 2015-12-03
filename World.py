@@ -82,7 +82,8 @@ class World(object):
         self.world_map[thing] = coords
         self.world_coord_map[(x, y)] = thing
 
-        del self.free_coords[(x, y)]
+        if coords in self.free_coords.keys():
+            del self.free_coords[coords]
 
         self.map_str = str_replace_at(
             self.map_str, self.cache_key(x, y), thing.symbol)
@@ -163,6 +164,12 @@ class World(object):
         neighbor_y = (y + y_offset) % self.map_height
 
         return (neighbor_x, neighbor_y)
+
+    def get_coords(self):
+        return self.get_occupied_coords() + self.get_free_coords()
+
+    def get_occupied_coords(self):
+        return list(self.world_coord_map.keys())
 
     def get_free_coords(self):
         return list(self.free_coords.keys())

@@ -4,14 +4,16 @@ from Entities.Creatures import Mouse
 from Entities.Creatures import Cat
 from Entities.Creatures import JohnCena
 from Entities.Plants import Corn
+from Entities.Nature import Lightning
 from time import sleep
-from random import choice, randint
+from random import choice
 
 ENTITY_TYPES = {"Mouse": Mouse.Mouse,
                 "Cat": Cat.Cat,
                 "JohnCena": JohnCena.JohnCena,
                 "Corn": Corn.Corn,
-                "Thing": Thing.Thing}
+                "Thing": Thing.Thing,
+                "Lightning": Lightning.Lightning}
 
 
 class Controller(object):
@@ -51,23 +53,24 @@ class Controller(object):
 
     def spawn_at_random_pos(self, entity_type):
 
-        free_coords = self.world.get_free_coords()
+        if entity_type not in ENTITY_TYPES.keys():
+            return
 
-        if free_coords:
+        entity = ENTITY_TYPES[entity_type]()
 
-            self.spawn_entity(entity_type, *(choice(free_coords)))
+        coords = []
+
+        if entity.spawn_location == "ALL":
+            coords = self.world.get_coords()
+        else:
+            coords = self.world.get_free_coords()
+
+        if coords:
+
+            self.world.add_thing(entity, *choice(coords))
 
     def spawn_multiple_at_random_pos(self, entity_type, amount):
 
         for i in range(amount):
 
             self.spawn_at_random_pos(entity_type)
-
-    def remove_at_random_pos(self, amount):
-
-        for i in range(amount):
-
-            x = randint(0, self.world.map_width - 1)
-            y = randint(0, self.world.map_height - 1)
-
-            self.world.remove_thing_at_coords(x, y)

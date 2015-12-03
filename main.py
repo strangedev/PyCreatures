@@ -49,5 +49,5 @@ def milestone_3():
 
 if __name__ == "__main__":
     # milestone_1()
-    milestone_2()
+    # milestone_2()
     milestone_3()

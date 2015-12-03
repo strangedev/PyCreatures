@@ -8,7 +8,7 @@ class Thing(object):
     def __init__(self):
         """
         """
-
+        self.spawn_location = "FREE"
         self._symbol = "T"
         self._pos = (None, None)
         self.age = 0
