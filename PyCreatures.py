@@ -23,6 +23,15 @@ class PyCreatures(object):
         if not is_last:
             sys.stdout.write("\033[F" * (string.count('\n') + 1))
 
+    def _perform_clear(self, args):
+
+        if len(args) == 3:
+            if args[1].isdigit() and args[2].isdigit():
+                self.width = int(args[1])
+                self.height = int(args[2])
+
+        self.ctlr.new_world(self.width, self.height)
+
     def _animate_cycles(self, amount, dt=0):
 
         if amount > 0:
@@ -93,7 +102,7 @@ class PyCreatures(object):
             self._perform_quit()
 
         elif args[0] == "clear":
-            self.ctlr.new_world(self.width, self.height)
+            self._perform_clear(args)
 
         elif args[0] == "spawn":
             self._perform_spawn(args)

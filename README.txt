@@ -7,6 +7,9 @@ q                           - quit
 
 map                         - display the map
 
+clear [WIDTH  HEIGHT]       - generate a new world of a certain width and 
+                              height
+
 spawn AMOUNT ENTITY_TYPE    - spawn a certain amount if entities at random
 
 anim CYCLES [DELTA_T]       - Advances the simulation by a certain amount of
@@ -19,4 +22,3 @@ anim CYCLES [DELTA_T]       - Advances the simulation by a certain amount of
                               cycles.
 
 ENTITY_TYPES:               - Corn, Mouse, Cat, JohnCena
-
