@@ -12,6 +12,8 @@ def milestone_1():
     w.add_thing(Thing.Thing(), 15, 0)
     w.add_thing(Thing.Thing(), 15, 9)
 
+    print(w.draw_map())
+
     thing1 = w.get_thing(15, 0)
     print(thing1.symbol)
 

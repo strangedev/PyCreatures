@@ -8,6 +8,10 @@ SOUTH = 2
 WEST = 3
 
 
+def replace_at_position(string, pos, val):
+    return string[:pos] + val + string[pos + 1:]
+
+
 class World(object):
 
     """
@@ -15,37 +19,30 @@ class World(object):
     """
 
     def __init__(self, width=79, height=24):
-
         self.world_map = {}
-        self.world_array = []
+        self.world_coord_map = {}
+        self.free_coords = {}
+
+        self.world_map_cache = "." * (width * height)
 
         self.map_width = width
         self.map_height = height
 
-        for y in range(self.map_height):
-            row = []
-
-            for x in range(self.map_width):
-                row.append(None)
-
-            self.world_array.append(row)
+        for x in range(width):
+            for y in range(height):
+                self.free_coords[(x, y)] = True
 
     def draw_map(self):
         """
         Map to ASCII method
         """
-        map_str = ""
 
-        for y in range(self.map_height):
-            for x in range(self.map_width):
+        cache_length = self.map_height * self.map_width
 
-                thing = self.get_thing(x, y)
+        map_chunks = [self.world_map_cache[i:i + self.map_width]
+                      for i in range(0, cache_length, self.map_width)]
 
-                map_str += thing.symbol if thing else "."
-
-            map_str += "\n"
-
-        return map_str
+        return str.join('\n', map_chunks)
 
     def compute_life_cycle(self):
 
@@ -62,7 +59,10 @@ class World(object):
         return self.world_map[thing]
 
     def get_thing(self, x, y):
-        return self.world_array[y][x]
+        if not self.coord_exists(x, y):
+            return None
+
+        return self.world_coord_map[(x, y)]
 
     def move(self, thing, x, y):
 
@@ -80,7 +80,12 @@ class World(object):
         thing.set_pos(coords)
 
         self.world_map[thing] = coords
-        self.world_array[y][x] = thing
+        self.world_coord_map[(x, y)] = thing
+
+        del self.free_coords[(x, y)]
+
+        self.world_map_cache = replace_at_position(
+            self.world_map_cache, self.cache_key(x, y), thing.symbol)
 
     def remove_thing(self, thing):
 
@@ -95,8 +100,13 @@ class World(object):
         if thing is None:
             return
 
-        self.world_array[y][x] = None
+        del self.world_coord_map[(x, y)]
         del self.world_map[thing]
+
+        self.free_coords[(x, y)] = True
+
+        self.world_map_cache = replace_at_position(
+            self.world_map_cache, self.cache_key(x, y), '.')
 
     def get_neighbor(self, thing, direction):
 
@@ -156,15 +166,11 @@ class World(object):
         return (neighbor_x, neighbor_y)
 
     def get_free_coords(self):
+        return list(self.free_coords.keys())
 
-        free_coords = []
+    def cache_key(self, x, y):
+        return (y * self.map_width) + x
 
-        for y in range(self.map_height):
-
-            for x in range(self.map_width):
-
-                if self.world_array[y][x] is None:
-
-                    free_coords.append((x, y))
-
-        return free_coords
+    def coord_exists(self, x, y):
+        keys = self.world_coord_map.keys()
+        return (x, y) in keys

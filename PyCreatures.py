@@ -32,7 +32,7 @@ class PyCreatures(object):
 
         self.ctlr.new_world(self.width, self.height)
 
-    def _animate_cycles(self, amount, dt=0):
+    def _animate_cycles(self, amount, dt=0.01):
 
         if amount > 0:
 
