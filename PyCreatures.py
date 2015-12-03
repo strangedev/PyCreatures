@@ -10,9 +10,13 @@ class PyCreatures(object):
 
         self.ctlr = Controller.Controller()
         self.ctlr.new_world(79, 29)
-        self.ctlr.print_map()
+        self._print_map()
 
         self._should_quit = False
+
+    def _print_map(self):
+
+        print(self.ctlr.draw_map())
 
     def _animate_cycles(self, amount, dt=0):
 
@@ -21,18 +25,18 @@ class PyCreatures(object):
             for cycle in range(amount):
 
                 self.ctlr.next_cycle()
-                self.ctlr.print_map()
 
                 if dt > 0:
+                    self._print_map()
                     sleep(dt)
+
+            if not (dt > 0):
+                self._print_map()
 
     def _perform_animate_cycles(self, args):
 
         if args[0].isdigit():
             self._animate_cycles(int(args[0]))
-
-        elif len(args) == 1:
-            self._animate_cycles(1)
 
         elif len(args) == 2 and args[1].isdigit():
 
@@ -52,6 +56,7 @@ class PyCreatures(object):
             return
 
         self.ctlr.spawn_multiple_at_random_pos(args[2], int(args[1]))
+        self._print_map()
 
     def _perform_quit(self):
         self._should_quit = True
@@ -90,6 +95,9 @@ class PyCreatures(object):
 
         elif args[0].isdigit():
             self._perform_animate_cycles(args)
+
+        else:
+        	self._print_map()
 
     @property
     def should_quit(self):

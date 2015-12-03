@@ -37,7 +37,7 @@ def milestone_2():
     for i in range(120):
 
         ctlr.next_cycle()
-        ctlr.print_map()
+        print(ctlr.draw_map())
 
         time.sleep(0.07)
 

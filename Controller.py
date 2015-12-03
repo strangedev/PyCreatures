@@ -37,9 +37,9 @@ class Controller(object):
 
             sleep(dt)
 
-    def print_map(self):
+    def draw_map(self):
 
-        print(self.world.draw_map())
+        return self.world.draw_map()
 
     def spawn_entity(self, entity_type, x, y):
 
@@ -62,5 +62,3 @@ class Controller(object):
         for i in range(amount):
 
             self.spawn_at_random_pos(entity_type)
-
-    
