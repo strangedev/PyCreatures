@@ -13,7 +13,7 @@ class PyCreatures(object):
         self.height = 29
         self.ctlr = Controller.Controller()
         self.ctlr.new_world(self.width, self.height)
-        self.ctlr.print_map()
+        print(self.ctlr.draw_map())
 
         self._should_quit = False
 
