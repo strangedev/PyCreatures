@@ -8,7 +8,7 @@ SOUTH = 2
 WEST = 3
 
 
-def replace_at_position(string, pos, val):
+def str_replace_at(string, pos, val):
     return string[:pos] + val + string[pos + 1:]
 
 
@@ -23,7 +23,7 @@ class World(object):
         self.world_coord_map = {}
         self.free_coords = {}
 
-        self.world_map_cache = "." * (width * height)
+        self.map_str = str("." * (width * height))
 
         self.map_width = width
         self.map_height = height
@@ -39,7 +39,7 @@ class World(object):
 
         cache_length = self.map_height * self.map_width
 
-        map_chunks = [self.world_map_cache[i:i + self.map_width]
+        map_chunks = [self.map_str[i:i + self.map_width]
                       for i in range(0, cache_length, self.map_width)]
 
         return str.join('\n', map_chunks)
@@ -84,8 +84,8 @@ class World(object):
 
         del self.free_coords[(x, y)]
 
-        self.world_map_cache = replace_at_position(
-            self.world_map_cache, self.cache_key(x, y), thing.symbol)
+        self.map_str = str_replace_at(
+            self.map_str, self.cache_key(x, y), thing.symbol)
 
     def remove_thing(self, thing):
 
@@ -105,8 +105,7 @@ class World(object):
 
         self.free_coords[(x, y)] = True
 
-        self.world_map_cache = replace_at_position(
-            self.world_map_cache, self.cache_key(x, y), '.')
+        self.map_str = str_replace_at(self.map_str, self.cache_key(x, y), '.')
 
     def get_neighbor(self, thing, direction):
 
