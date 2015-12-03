@@ -21,7 +21,7 @@ class PyCreatures(object):
         print(string)
 
         if not is_last:
-            sys.stdout.write('\b\r' * (string.count('\n') + 1))
+            sys.stdout.write("\033[F" * (string.count('\n') + 1))
 
     def _animate_cycles(self, amount, dt=0):
 
