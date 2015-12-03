@@ -92,6 +92,9 @@ class PyCreatures(object):
         elif args[0] == "q":
             self._perform_quit()
 
+        elif args[0] == "clear":
+            self.ctlr.new_world(self.width, self.height)
+
         elif args[0] == "spawn":
             self._perform_spawn(args)
 
@@ -100,6 +103,9 @@ class PyCreatures(object):
 
         elif args[0].isdigit():
             self._perform_animate_cycles(args)
+
+        else:
+            print(self.ctlr.draw_map())
 
     @property
     def should_quit(self):
