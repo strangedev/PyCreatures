@@ -1,5 +1,6 @@
 import Controller
 from time import sleep
+import sys
 
 
 class PyCreatures(object):
@@ -8,11 +9,19 @@ class PyCreatures(object):
 
     def __init__(self):
 
+        self.width = 79
+        self.height = 29
         self.ctlr = Controller.Controller()
-        self.ctlr.new_world(79, 29)
+        self.ctlr.new_world(self.width, self.height)
         self.ctlr.print_map()
 
         self._should_quit = False
+
+    def _redraw(self, string, is_last=False):
+        print(string)
+
+        if not is_last:
+            sys.stdout.write('\b\r' * (string.count('\n') + 1))
 
     def _animate_cycles(self, amount, dt=0):
 
@@ -21,7 +30,8 @@ class PyCreatures(object):
             for cycle in range(amount):
 
                 self.ctlr.next_cycle()
-                self.ctlr.print_map()
+
+                self._redraw(self.ctlr.draw_map(), cycle == amount - 1)
 
                 if dt > 0:
                     sleep(dt)
