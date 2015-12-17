@@ -1,9 +1,17 @@
 """
+
 Thing Module
+
 """
 
 
 class Thing(object):
+
+    """
+
+    Abstract superclass for all entities in the world.
+
+    """
 
     def __init__(self):
         """
@@ -39,7 +47,7 @@ class Thing(object):
     def perform_action(self):
         """
 
-        The default perform action method that increments age
+        The default perform action method that increments age.
 
         """
 

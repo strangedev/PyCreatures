@@ -1,10 +1,21 @@
+"""
+
+Mouse module
+
+"""
+
 from Entities.Creatures import Creature
 from Entities.Plants import Corn
 
 
 class Mouse(Creature.Creature):
 
-    """docstring for Mouse"""
+    """
+
+    Implementation of Creature class.
+    Represents a mouse.
+
+    """
 
     def __init__(self):
 

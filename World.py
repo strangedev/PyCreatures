@@ -1,7 +1,14 @@
 """
+
+World module
+
+Represents the simulated world.
+Provides low-level methods to manipulate things in the world.
+
 """
 from random import choice
 
+#  Enumerator for possible directions.
 NORTH = 0
 EAST = 1
 SOUTH = 2

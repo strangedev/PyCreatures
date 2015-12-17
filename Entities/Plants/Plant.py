@@ -1,5 +1,7 @@
 """
+
 Plant Module
+
 """
 import Thing
 
@@ -7,11 +9,16 @@ import Thing
 class Plant(Thing.Thing):
 
     """
-    Plant class
+
+    Abstract superclass for all Plant-like entities in the world.
+
     """
 
     def __init__(self):
         """
+
+        Initialisation of the Plant object.
+
         """
 
         super().__init__()
@@ -19,6 +26,12 @@ class Plant(Thing.Thing):
         self.seed_cycle = 6
 
     def perform_action(self, world):
+        """
+
+        The default perform_action method for all plants.
+        Reproduces entity after seed_cycle many cycles.
+
+        """
 
         super().perform_action()
 

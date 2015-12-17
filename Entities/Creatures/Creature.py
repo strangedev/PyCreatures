@@ -1,17 +1,27 @@
 """
+
 Creature Module
+
 """
+
 import Thing
+
 from random import choice
 
 
 class Creature(Thing.Thing):
 
     """
+
+    Abstract superclass for all animal-like entities in the world.
+
     """
 
     def __init__(self):
         """
+
+        Initialisation of the Creature object.
+
         """
 
         super().__init__()
@@ -22,6 +32,14 @@ class Creature(Thing.Thing):
         self.starving = 0
 
     def perform_action(self, world):
+        """
+
+        The default perform_action method for all animal-like entities.
+        Moves to adjacent positions containing food, moves randomly if
+        no food is nearby.
+        Removes entity from world if it dies of age or starvation.
+
+        """
 
         super().perform_action()
 

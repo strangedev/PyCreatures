@@ -1,12 +1,24 @@
+"""
+
+PyCreatures module
+
+Provides user access to high-level methods of Controller
+
+"""
+
 import Controller
+
 from time import sleep
 
 
 class PyCreatures(object):
 
-    """docstring for PyCreatures"""
-
     def __init__(self):
+        """
+
+        Initialisation of the PyCreatures object.
+
+        """
 
         self.ctlr = Controller.Controller()
         self.ctlr.new_world(79, 29)
@@ -15,6 +27,12 @@ class PyCreatures(object):
         self._should_quit = False
 
     def _animate_cycles(self, amount, dt=0):
+        """
+
+        Advances the world by n cycles and draws each iteration with
+        a time offset of dt
+
+        """
 
         if amount > 0:
 
@@ -27,6 +45,11 @@ class PyCreatures(object):
                     sleep(dt)
 
     def _perform_animate_cycles(self, args):
+        """
+
+        Wraps _animate_cycles to validate user input.
+
+        """
 
         if args[0].isdigit():
             self._animate_cycles(int(args[0]))
@@ -47,6 +70,11 @@ class PyCreatures(object):
             self._animate_cycles(cycle_amount, dt)
 
     def _perform_spawn(self, args):
+        """
+
+        Wraps spawn_multiple_at_random_pos to validate user input.
+
+        """
 
         if len(args) != 3 or not args[1].isdigit():
             return
@@ -54,9 +82,21 @@ class PyCreatures(object):
         self.ctlr.spawn_multiple_at_random_pos(args[2], int(args[1]))
 
     def _perform_quit(self):
+        """
+
+        Sets _should_quit to True.
+
+        """
+
         self._should_quit = True
 
     def _print_help(self):
+        """
+
+        Gets the contents of README.txt and prints them out.
+        Prints error message if read fails.
+
+        """
 
         help_str = "Failed to load README.txt :("
 
@@ -70,6 +110,14 @@ class PyCreatures(object):
         print(help_str)
 
     def perform_command(self, command_str):
+        """
+
+        Performs a command by the user.
+        Performs only one command, the input string should only contain
+        a single command.
+        Malformed command strings are ignored.
+
+        """
 
         args = command_str.split()
 
@@ -93,4 +141,10 @@ class PyCreatures(object):
 
     @property
     def should_quit(self):
+        """
+
+        A getter for _should_quit.
+
+        """
+
         return self._should_quit

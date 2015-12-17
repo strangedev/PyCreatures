@@ -1,11 +1,23 @@
+"""
+
+Main module
+
+"""
+
 import World
 import Thing
 import Controller
 import PyCreatures
+
 import time
 
 
 def milestone_1():
+    """
+
+    Implements milestone 1 of the assignment.
+
+    """
 
     w = World.World(20, 10)
 
@@ -27,6 +39,11 @@ def milestone_1():
 
 
 def milestone_2():
+    """
+
+    Implements milestone 2 of the assignment.
+
+    """
 
     ctlr = Controller.Controller()
 
@@ -39,18 +56,41 @@ def milestone_2():
         ctlr.next_cycle()
         ctlr.print_map()
 
-        time.sleep(0.07)
-
 
 def milestone_3():
+    """
+
+    Implements milestone 3 of the assignment.
+    Milestone 3 is the fully functional simulation.
+
+    """
 
     py_creatures = PyCreatures.PyCreatures()
 
     while not py_creatures.should_quit:
-        py_creatures.perform_command(input("> "))
+        py_creatures.perform_command(input("Type 'h' for help > "))
+
+
+def __main__():
+    """
+
+    Runs all 3 milestones of the assignment for testing.
+
+    """
+    print("Running milestone_1...")
+    milestone_1()
+
+    input("Press any key to run milestone_2...")
+
+    print("Running milestone_2...")
+    milestone_2()
+
+    input("Press any key to run milestone_3...")
+
+    print("Running milestone_3...")
+    milestone_3()
 
 
 if __name__ == "__main__":
-    # milestone_1()
-    # milestone_2()
-    milestone_3()
+
+    __main__()
