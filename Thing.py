@@ -7,6 +7,9 @@ class Thing(object):
 
     def __init__(self):
         """
+
+        The inialisation of the thing object.
+
         """
 
         self._symbol = "T"
@@ -16,18 +19,39 @@ class Thing(object):
 
     @property
     def symbol(self):
+        """
+
+        A getter for symbol that returns a '.' if no symbol set.
+
+        """
+
         return self._symbol if self._symbol else "."
 
     def set_pos(self, pos):
+        """
+
+        A setter for position
+
+        """
+
         self._pos = pos
 
     def perform_action(self):
         """
+
+        The default perform action method that increments age
+
         """
 
         self.age += 1
 
     def find_food_locations(self, world):
+        """
+
+        Checks if neighbors are in fact food and returns their locations.
+
+        """
+
         neighbors = world.get_all_neighbors_from_coords(*self._pos)
 
         food_locations = []
@@ -40,6 +64,12 @@ class Thing(object):
         return food_locations
 
     def _reproduce(self, world):
+        """
+
+        Determins how a thing reproduces.
+
+        """
+
         x, y = world.get_random_neighboring_free(*self._pos)
 
         if x == -1 and y == -1:

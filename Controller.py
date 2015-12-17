@@ -1,17 +1,12 @@
 import World
 import Thing
 from Entities.Creatures import Mouse
-from Entities.Creatures import Cat
-from Entities.Creatures import JohnCena
 from Entities.Plants import Corn
 from time import sleep
 from random import choice
 
 ENTITY_TYPES = {"Mouse": Mouse.Mouse,
-                "Cat": Cat.Cat,
-                "JohnCena": JohnCena.JohnCena,
-                "Corn": Corn.Corn,
-                "Thing": Thing.Thing}
+                "Corn": Corn.Corn}
 
 
 class Controller(object):
@@ -63,4 +58,4 @@ class Controller(object):
 
             self.spawn_at_random_pos(entity_type)
 
-    
+
