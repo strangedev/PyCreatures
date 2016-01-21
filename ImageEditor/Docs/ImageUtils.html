@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module ImageUtils</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>ImageUtils</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/home/strangedev/Dropbox/Uni/S2%20WiSe%202015/EPR/%C3%9Cbung%206/Src/ImageUtils.py">/home/strangedev/Dropbox/Uni/S2 WiSe 2015/EPR/Übung 6/Src/ImageUtils.py</a></font></td></tr></table>
+    <p><tt>#rant<br>
+Contains&nbsp;dirty&nbsp;workarounds&nbsp;for&nbsp;broken&nbsp;libraries.<br>
+Why&nbsp;do&nbsp;I&nbsp;even&nbsp;have&nbsp;to&nbsp;do&nbsp;this&nbsp;@_@<br>
+I&nbsp;mean&nbsp;seriously,&nbsp;how&nbsp;hard&nbsp;can&nbsp;it&nbsp;be&nbsp;to&nbsp;implement<br>
+your&nbsp;methods&nbsp;to&nbsp;support&nbsp;all&nbsp;kinds&nbsp;of&nbsp;ndimages?<br>
+And&nbsp;even&nbsp;if&nbsp;you're&nbsp;too&nbsp;lazy&nbsp;or&nbsp;don't&nbsp;give&nbsp;a&nbsp;f***,<br>
+you&nbsp;could&nbsp;at&nbsp;least&nbsp;document&nbsp;your&nbsp;limitations!<br>
+I&nbsp;strongly&nbsp;advise&nbsp;against&nbsp;using&nbsp;scipy&nbsp;or&nbsp;skimage&nbsp;for&nbsp;anything.<br>
+#endrant</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="skimage.color.html">skimage.color</a><br>
+</td><td width="25%" valign=top><a href="skimage.exposure.html">skimage.exposure</a><br>
+</td><td width="25%" valign=top><a href="numpy.html">numpy</a><br>
+</td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-grey2rgb_fixed"><strong>grey2rgb_fixed</strong></a>(arr)</dt><dd><tt>skimage&nbsp;converts&nbsp;uint8&nbsp;to&nbsp;float&nbsp;by&nbsp;default,&nbsp;which&nbsp;is&nbsp;annoying.</tt></dd></dl>
+ <dl><dt><a name="-normalize_intensity_p298"><strong>normalize_intensity_p298</strong></a>(arr)</dt><dd><tt>skimage&nbsp;exposure&nbsp;does&nbsp;contrast&nbsp;stretching,&nbsp;but&nbsp;it's&nbsp;broken&nbsp;for<br>
+L-Value&nbsp;images.&nbsp;This&nbsp;is&nbsp;a&nbsp;dirty&nbsp;workaround.</tt></dd></dl>
+ <dl><dt><a name="-rgb2grey_fixed"><strong>rgb2grey_fixed</strong></a>(arr)</dt><dd><tt>skimage&nbsp;converts&nbsp;uint8&nbsp;to&nbsp;float&nbsp;by&nbsp;default,&nbsp;which&nbsp;is&nbsp;annoying.</tt></dd></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#7799ee">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Author</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#7799ee"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%">5966916:&nbsp;Noah&nbsp;Hummel,&nbsp;5987733:&nbsp;Kyle&nbsp;Rinfreschi</td></tr></table>
+</body></html>
