@@ -1,19 +1,16 @@
 import World
-import Thing
-from Entities.Creatures import Mouse
-from Entities.Creatures import Cat
-from Entities.Creatures import JohnCena
-from Entities.Plants import Corn
-from Entities.Nature import Lightning
+from Entities import Thing
+from Entities.GNFood import GNCorn
+from Entities.GNDangers import GNMouseTrap
+from Entities.GNCreatures import GNMouse
 from time import sleep
 from random import choice
 
-ENTITY_TYPES = {"Mouse": Mouse.Mouse,
-                "Cat": Cat.Cat,
-                "JohnCena": JohnCena.JohnCena,
-                "Corn": Corn.Corn,
-                "Thing": Thing.Thing,
-                "Lightning": Lightning.Lightning}
+ENTITY_TYPES = {
+    "GNCorn": GNCorn.GNCorn,
+    "GNT": GNMouseTrap.GNMouseTrap,
+    "GNMouse": GNMouse.GNMouse
+}
 
 
 class Controller(object):
